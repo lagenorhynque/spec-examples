@@ -2,10 +2,10 @@
   (:require [clojure.spec.alpha :as s]))
 
 (s/def ::type keyword?)
-(s/def ::radius number?)
-(s/def ::side-a number?)
-(s/def ::side-b number?)
-(s/def ::side-c number?)
+(s/def ::radius (s/and double? pos?))
+(s/def ::side-a (s/and double? pos?))
+(s/def ::side-b (s/and double? pos?))
+(s/def ::side-c (s/and double? pos?))
 
 (defmulti shape-type ::type)
 (defmethod shape-type ::sphere [_]
@@ -19,7 +19,7 @@
 
 (s/fdef volume
         :args (s/cat :shape ::shape)
-        :ret number?)
+        :ret double?)
 
 (defmulti volume ::type)
 (defmethod volume ::sphere [{::keys [radius]}]
