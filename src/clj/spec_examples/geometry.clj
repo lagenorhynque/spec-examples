@@ -2,10 +2,11 @@
   (:require [clojure.spec.alpha :as s]))
 
 (s/def ::type keyword?)
-(s/def ::radius (s/and double? pos?))
-(s/def ::side-a (s/and double? pos?))
-(s/def ::side-b (s/and double? pos?))
-(s/def ::side-c (s/and double? pos?))
+(s/def ::pos-double (s/and double? pos?))
+(s/def ::radius ::pos-double)
+(s/def ::side-a ::pos-double)
+(s/def ::side-b ::pos-double)
+(s/def ::side-c ::pos-double)
 
 (defmulti shape-type ::type)
 (defmethod shape-type ::sphere [_]
@@ -21,10 +22,6 @@
         :args (s/cat :shape ::shape)
         :ret double?)
 
-(s/fdef volume
-        :args (s/cat :shape ::shape)
-        :ret double?)
-
 (defmulti area ::type)
 (defmethod area ::sphere [{::keys [radius]}]
   (* 4 Math/PI (Math/pow radius 2)))
@@ -34,6 +31,10 @@
   (* 2 (+ (* side-a side-b)
           (* side-b side-c)
           (* side-c side-a))))
+
+(s/fdef volume
+        :args (s/cat :shape ::shape)
+        :ret double?)
 
 (defmulti volume ::type)
 (defmethod volume ::sphere [{::keys [radius]}]
