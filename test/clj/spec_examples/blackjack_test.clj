@@ -1,7 +1,8 @@
 (ns spec-examples.blackjack-test
   (:require [clojure.spec.test.alpha :as stest]
             [clojure.test :refer :all]
-            [spec-examples.blackjack :as bj]))
+            [spec-examples.blackjack :as bj]
+            [spec-examples.test-util :refer [defspec-test]]))
 
 (use-fixtures
   :once
@@ -85,3 +86,12 @@
     (is (= :lose
            (bj/result [[:ace :diamond] [:king :club]]
                       [[:ace :spade] [3 :heart] [7 :club]])))))
+
+(defspec-test sum-hand-spec-test [bj/sum-hand])
+(defspec-test init-game-spec-test [bj/init-game])
+(defspec-test status-spec-test [bj/status])
+(defspec-test show-status-spec-test [bj/show-status])
+(defspec-test hit-spec-test [bj/hit])
+(defspec-test stand-spec-test [bj/stand])
+(defspec-test result-spec-test [bj/result])
+(defspec-test show-result-spec-test [bj/show-result])

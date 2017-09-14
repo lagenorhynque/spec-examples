@@ -1,6 +1,7 @@
 (ns spec-examples.blackjack
   (:require [clojure.spec.alpha :as s]
-            [clojure.spec.gen.alpha :as gen]))
+            [clojure.spec.gen.alpha :as gen]
+            [spec-examples.util :as util]))
 
 (def ranks (into #{:ace :jack :queen :king} (range 2 (inc 10))))
 (def suits #{:club :diamond :heart :spade})
@@ -76,6 +77,20 @@
 (s/def ::reveal? boolean?)
 
 (defn- game-generator
+  []
+  (letfn [(split-at-random-gen [deck]
+            (gen/return (draw-cards deck
+                                    (rand-int (count deck)))))]
+    (util/let [deck (gen/fmap shuffle (gen/return initial-deck))
+               [dealer deck'] (split-at-random-gen deck)
+               [player deck''] (split-at-random-gen deck')
+               reveal? (gen/boolean)]
+      #::{:deck deck''
+          :dealer dealer
+          :player player
+          :reveal? reveal?})))
+
+(defn- game-generator'
   []
   (letfn [(split-at-random-gen [deck]
             (gen/return (draw-cards deck
