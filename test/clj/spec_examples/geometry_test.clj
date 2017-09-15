@@ -11,5 +11,6 @@
     (f)
     (stest/unstrument)))
 
-(defspec-test area-spec-test [geo/area])
+(defspec-test surface-area-spec-test [geo/surface-area])
 (defspec-test volume-spec-test [geo/volume])
+(defspec-test show-spec-test [geo/show])
