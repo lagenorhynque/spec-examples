@@ -2,12 +2,12 @@
   (:require [clojure.spec.alpha :as s]))
 
 (s/def ::type keyword?)
-(s/def ::pos-double (s/and double? pos?))
-(s/def ::radius ::pos-double)
-(s/def ::side ::pos-double)
-(s/def ::side-a ::pos-double)
-(s/def ::side-b ::pos-double)
-(s/def ::side-c ::pos-double)
+(s/def ::length (s/and number? pos?))
+(s/def ::radius ::length)
+(s/def ::side ::length)
+(s/def ::side-a ::length)
+(s/def ::side-b ::length)
+(s/def ::side-c ::length)
 
 (defmulti shape-type ::type)
 (defmethod shape-type ::sphere [_]
@@ -21,7 +21,7 @@
 
 (s/fdef surface-area
         :args (s/cat :shape ::shape)
-        :ret double?)
+        :ret number?)
 
 (defmulti surface-area ::type)
 (defmethod surface-area ::sphere [{::keys [radius]}]
@@ -29,13 +29,13 @@
 (defmethod surface-area ::cube [{::keys [side]}]
   (* 6 (Math/pow side 2)))
 (defmethod surface-area ::cuboid [{::keys [side-a side-b side-c]}]
-  (* 2 (+ (* side-a side-b)
-          (* side-b side-c)
-          (* side-c side-a))))
+  (*' 2 (+' (*' side-a side-b)
+            (*' side-b side-c)
+            (*' side-c side-a))))
 
 (s/fdef volume
         :args (s/cat :shape ::shape)
-        :ret double?)
+        :ret number?)
 
 (defmulti volume ::type)
 (defmethod volume ::sphere [{::keys [radius]}]
@@ -43,7 +43,7 @@
 (defmethod volume ::cube [{::keys [side]}]
   (Math/pow side 3))
 (defmethod volume ::cuboid [{::keys [side-a side-b side-c]}]
-  (* side-a side-b side-c))
+  (*' side-a side-b side-c))
 
 (s/fdef show
         :args (s/cat :shape ::shape)

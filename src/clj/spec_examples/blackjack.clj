@@ -90,6 +90,7 @@
           :player player
           :reveal? reveal?})))
 
+;; verbose implementation with gen/bind & gen/return
 (defn- game-generator'
   []
   (letfn [(split-at-random-gen [deck]
@@ -225,6 +226,8 @@
              :win "You win!! x1"
              :draw "Draw!"
              :lose "You lose...")))
+
+;;; utilities for playing game
 
 (let [g (atom (init-game))
       show #(show-status @g)
