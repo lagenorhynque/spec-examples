@@ -11,4 +11,5 @@
   {:dev {:dependencies [[org.clojure/test.check "0.9.0"]
                         [pjstadig/humane-test-output "0.8.3"]]
          :injections [(require 'pjstadig.humane-test-output)
-                      (pjstadig.humane-test-output/activate!)]}})
+                      (pjstadig.humane-test-output/activate!)]
+         :source-paths ["env/dev/clj"]}})

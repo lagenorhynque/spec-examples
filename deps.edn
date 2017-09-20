@@ -1,0 +1,5 @@
+{:deps {org.clojure/clojure {:type :mvn :version "1.9.0-beta1"}
+        local/src {:type :file :path "src/clj"}
+        local/test {:type :file :path "test/clj"}}
+ :aliases {:dev {:extra-deps {org.clojure/test.check {:type :mvn :version "0.9.0"}
+                              local/dev {:type :file :path "env/dev/clj"}}}}}
