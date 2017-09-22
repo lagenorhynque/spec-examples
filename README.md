@@ -71,6 +71,6 @@ nil
 ```
 ### available commands
 
-- `spec-examples.blackjack/init`: initialise the game
+- `spec-examples.blackjack/init`: initialize the game
 - `spec-examples.blackjack/hit-by-player`: hit operation by player
 - `spec-examples.blackjack/stand-by-player`: stand operation by player
