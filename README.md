@@ -26,6 +26,14 @@ $ lein repl
 $ clj -R:dev
 ```
 
+This will start Clojure REPL with the following code already executed:
+
+```clj
+(require '[clojure.spec.alpha :as s]
+         '[clojure.spec.gen.alpha :as gen]
+         '[clojure.spec.test.alpha :as stest])
+```
+
 ## Run example code
 
 - with Leiningen
@@ -42,7 +50,7 @@ $ clj -m spec-examples.core
 
 ## Play [Blackjack](https://en.wikipedia.org/wiki/Blackjack)
 
-in Clojure REPL
+In Clojure REPL,
 
 ```clj
 user=> (require '[spec-examples.blackjack :as bj])
