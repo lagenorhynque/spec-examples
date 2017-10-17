@@ -23,7 +23,7 @@ $ lein repl
 - with `clj` command
 
 ```sh
-$ clj -R:dev
+$ clj -R:dev -C:dev
 ```
 
 This will start Clojure REPL with the following code already executed:
