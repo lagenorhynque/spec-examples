@@ -53,17 +53,17 @@ $ clj -m spec-examples.core
 In Clojure REPL,
 
 ```clj
-user=> (require '[spec-examples.blackjack :as bj])
+user=> (require '[spec-examples.blackjack.play :as bj])
 nil
 user=> (bj/init)
 dealer: [[9 :spade] ???]
 player: [[4 :diamond] [:ace :diamond]] => 15
 nil
-user=> (bj/hit-by-player)
+user=> (bj/hit)
 dealer: [[9 :spade] ???]
 player: [[3 :club] [4 :diamond] [:ace :diamond]] => 18
 nil
-user=> (bj/stand-by-player)
+user=> (bj/stand)
 dealer: [[9 :spade] [8 :diamond]] => 17
 player: [[3 :club] [4 :diamond] [:ace :diamond]] => 18
 You win!! x1

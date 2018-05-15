@@ -2,6 +2,7 @@
   (:require [clojure.spec.test.alpha :as stest]
             [clojure.test :refer :all]
             [spec-examples.geometry :as geo]
+            [spec-examples.geometry.specs]
             [spec-examples.test-util :refer [defspec-test]]))
 
 (use-fixtures
